@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css">
+    <link rel="icon" type="image/x-icon" href="mapinha.png">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js"></script>
+    <title>Unimap</title>
+</head>
+<body>
+    <header>
+        <h1 class="logo">UNIMAP</h1>
+        <nav>
+            <ul>
+                <li><a href="https://digital.unimar.br/quem-somos" target="_blank">Sobre nós</a></li>
+                <li><a href="https://oficial.unimar.br/contato/" target="_blank">Contato</a></li>
+                <li><a href="https://blog.unimar.br/" target="_blank">Blog</a></li>
+                <li><a href="https://unimar.br/" target="_blank">Unimar</a></li>
+                <li class="notification-button" id="notification-button">
+                    <span class="notification-badge"></span>
+                    <span class="icon"></span>
+                    Notificações
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="notification-container" id="notification-container">
+        <div class="notification" id="notification">
+            <span class="close-button" onclick="fecharNotificacao()">&times;</span>
+            <p style="text-align: left;">INFORMAMOS QUE: <BR> <br>
+                RUA 4 ESTÁ INTERDITADA POR MOTIVO DE OBRAS!
+            </p><br>
+            <p> 2ª edição do UNIMAR Tech Summit. <br> Está chegando <a href="https://oficial.unimar.br/eventos/tech-summit-2/" target="_blank"><strong>Se Inscreva!</strong></a> </p>
+
+        </div>
+    </div>
+    <!-- caixa de comentários -->
+    <button id="botao-abrir">Comentários</button>
+    <div id="caixa-comentarios" class="oculta">
+        <h2>Comentários</h2>
+        <div id="comentarios">
+            <p>Estou muito contente com o Unimap, tem me ajudado muito a não me perder mais <br>-Pedro Santos </p>
+            <p><br>Já recomendei o Unimap para todos do meu curso, increvel!! <br> -Larrissa Nunes</p>
+            <!-- Adicione mais comentários aqui -->
+        </div>
+        <h2><br>Adicionar Comentário <br></h2>
+        <textarea id="novo-comentario" rows="4" cols="50"></textarea>
+        <br>
+        <button id="botao-comentar">Comentar</button>
+        <button id="botao-fechar">Fechar</button>
+    </div>
+    <div class="banner">
+        <div class="content">
+            <div class="textsdad">
+                <div class="textslogan">
+                    <h1>Mapa do campus Unimar</h1>
+                    <h2>Confira informações e se localize</h2>
+                </div>
+                <div class="texts">
+                    <div class="text">
+                        <p><strong>Confira informações aqui no site:</strong><br>Se localize e aproveite o máximo<br>da Unimar.</p>
+                    </div>
+                    <div class="text">
+                        <p><strong>Fique por dentro dos eventos:</strong><br>aqui você sera informado de<br>todos os eventos.</p>
+                    </div>
+                    <div class="text">
+                        <p><strong>Descobriu algo de errado no campus?</strong><br>Denuncie para nós, vamos fazer o<br>possível para trazer a solução.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mapdad">
+        <div id="map"></div>
+    </div>
+    <div class="container-slider">
+        <button id="prev-button"><img src="./img/arrow.png" alt="prev-button"></button>
+        <div class="container-images">
+            <img src="./img/Bloco4.png" alt="bloco4" class="slider on">
+            <img src="./img/Rota.png" alt="bloco4" class="slider">
+        </div>
+        <button id="next-button"><img src="./img/arrow.png" alt="next-button"></button>
+    </div>
+    <div class="client">
+        <p>
+            "Como calouro da Unimar, tenho que dizer que esse site de auto-localização é incrível!<br>
+            Facilitou demais a minha vida ao encontrar as salas de aula e outros locais no campus.<br>
+            E a parte de informações sobre eventos é um bônus adicional. Agora, sempre sei o que<br>
+            está acontecendo e não perco mais nenhum evento interessante. A Unimap realmente<br>
+            se destacou ao criar essa plataforma interativa e informativa."<br><br>
+            - Felipe Araujo
+        </p>
+    </div>
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2023 UNIMAP. Todos os direitos reservados para Luiz H.</p>
+        </div>
+    </footer>
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoiY2F1ZWgxcDNyIiwiYSI6ImNsbG8zMDBubDA1bXYzZW4xY3J1aW56cjkifQ.BW8sXRQtfPcAY6zkrsVnRg';
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [-49.96455, -22.23669], // Coordenadas de Marília, SP
+            zoom: 16, // Nível de zoom
+            interactive: true
+        });
+
+        var marker = new mapboxgl.Marker()
+            .setLngLat([-49.96455, -22.23669])
+            .addTo(map);
+
+        var popup = new mapboxgl.Popup()
+            .setHTML("<b>Unimar, Campus</b><br>Localização aproximada.")
+            .addTo(map);
+
+        marker.setPopup(popup);
+    </script>
+</body>
+</html>
